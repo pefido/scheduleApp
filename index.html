@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="manager">
+    <head>
+
+    </head>
+    <body>
+        <H3>Gerenciador de videos/noticias</H3>
+
+        <!--<div  ng-controller = "ListController as list" >
+            <p ng-repeat="video in list.videos"> {{video.name}} </p>
+        </div>-->
+
+        <div  ng-controller = "ListController as list" >
+            <H4>Lista de videos</H4>
+            <div class="videos" ng-repeat="video in list.videos" ><!--ng-init="var = true"-->
+                <input  type="checkbox" ng-model="var" name="video" value={{video}} ng-change="" >{{video.name}}
+            </div>
+
+            <H4>Lista de noticias</H4>
+            <div class="news" ng-repeat="new in list.news" ><!--ng-init="var = true"-->
+                <input  type="checkbox" ng-model="var" name="new" value={{new}} ng-change="" >{{new.titulo}}
+            </div>
+
+            <div>
+                <button ng-click="list.addC()" >
+                    Enviar
+                </button>
+            </div>
+
+            <p ng-show="list.enviado" >Enviado!!!</p>
+        </div>
+
+
+        <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="angular.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
