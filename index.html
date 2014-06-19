@@ -12,12 +12,12 @@
 
         <div  ng-controller = "ListController as list" >
             <H4>Lista de videos</H4>
-            <div class="videos" ng-repeat="video in list.videos" ><!--ng-init="var = true"-->
+            <div class="videos" ng-repeat="video in list.videos" ng-init="var = true">
                 <input  type="checkbox" ng-model="var" name="video" value={{video}} ng-change="" >{{video.name}}
             </div>
 
             <H4>Lista de noticias</H4>
-            <div class="news" ng-repeat="new in list.news" ><!--ng-init="var = true"-->
+            <div class="news" ng-repeat="new in list.news" ng-init="var = true">
                 <input  type="checkbox" ng-model="var" name="new" value={{new}} ng-change="" >{{new.titulo}}
             </div>
 
