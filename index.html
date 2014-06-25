@@ -22,7 +22,7 @@
             </div>
 
             <H4>Lista de biblioteca</H4>
-            <div class="biblio" ng-repeat="biblio in list.biblio" ng-init="var = true">
+            <div class="biblios" ng-repeat="biblio in list.biblios" ng-init="var = true">
                 <input  type="checkbox" ng-model="var" name="biblio" value={{biblio}} ng-change="" >{{biblio.titulo}}
             </div>
 
