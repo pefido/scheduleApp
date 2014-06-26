@@ -5,18 +5,25 @@
         var myList = this;
         myList.videos = [];
         myList.news = [];
+        myList.biblios = [];
         myList.send = [];
         myList.enviado = false;
 
         $http.get("http://localhost:8080/api/tv/videos").success(function(data){
             //console.log(data);
             myList.videos = data;
-            //console.log(myList.videos);
+            // console.log(myList.videos);
         });
 
         $http.get("http://localhost:8080/api/tv/news").success(function(data){
             //console.log(data);
             myList.news = data;
+            //console.log(myList.news);
+        });
+
+        $http.get("http://localhost:8080/api/tv/biblio").success(function(data){
+            //console.log(data);
+            myList.biblios = data;
             //console.log(myList.news);
         });
 
@@ -45,6 +52,19 @@
                     publicado: JSON.parse(this.value).publicado
                 };
                 myList.send.push(sendNew);
+            });
+
+            $("input:checkbox[name=biblio]:checked").each(function(){
+                // add $(this).val() to your array
+                var sendBiblio={
+                    type: 'biblio',
+                    titulo: JSON.parse(this.value).titulo,
+                    descricao: JSON.parse(this.value).desc,
+                    image: JSON.parse(this.value).image,
+                    link: JSON.parse(this.value).link,
+                    publicado: JSON.parse(this.value).publicado
+                };
+                myList.send.push(sendBiblio);
             });
             $http.post('http://localhost:8080/api/dev/schedule', myList.send).success(function(){
                 myList.enviado = true;

@@ -21,6 +21,11 @@
                 <input  type="checkbox" ng-model="var" name="new" value={{new}} ng-change="" >{{new.titulo}}
             </div>
 
+            <H4>Lista de biblioteca</H4>
+            <div class="biblios" ng-repeat="biblio in list.biblios" ng-init="var = true">
+                <input  type="checkbox" ng-model="var" name="biblio" value={{biblio}} ng-change="" >{{biblio.titulo}}
+            </div>
+
             <div>
                 <button ng-click="list.addC()" >
                     Enviar
