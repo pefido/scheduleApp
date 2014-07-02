@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html ng-app="manager">
     <head>
-
+      <meta charset="utf-8">
     </head>
     <body>
-        <H3>Gerenciador de videos/noticias</H3>
+        <H3>Gerenciador de conteudos</H3>
 
         <!--<div  ng-controller = "ListController as list" >
             <p ng-repeat="video in list.videos"> {{video.name}} </p>
@@ -26,6 +26,22 @@
                 <input  type="checkbox" ng-model="var" name="biblio" value={{biblio}} ng-change="" >{{biblio.titulo}}
             </div>
 
+            <H4>Lista de avisos</H4>
+            <div class="broadcast" ng-repeat="broadcast in list.broadcasts" ng-init="var = true">
+                <input  type="button" ng-model="broadcast" name="broadcast" value=Apagar ng-click="removeBroadcast(broadcast)" >{{broadcast.text}}
+            </div>
+            <br>
+            <div>
+              <form ng-submit="addBroadcast()">
+              <select ng-model="type">
+                <option value="Importante">Importante</option>
+                <option value="Informação">Informação</option>
+              </select>
+              <input type="text" ng-model="text" placeholder="Aviso" required>
+              <input type="submit" value="Adicionar">
+              </form>
+            </div>
+            <br><br>
             <div>
                 <button ng-click="list.addC()" >
                     Enviar
@@ -33,6 +49,7 @@
             </div>
 
             <p ng-show="list.enviado" >Enviado!!!</p>
+
         </div>
 
 

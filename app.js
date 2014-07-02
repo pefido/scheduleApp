@@ -1,31 +1,53 @@
 (function(){
     var app = angular.module('manager', []);
 
-    app.controller('ListController',  function($http){
+    app.controller('ListController', function($http, $scope){
         var myList = this;
         myList.videos = [];
         myList.news = [];
         myList.biblios = [];
+        myList.broadcasts = [];
         myList.send = [];
         myList.enviado = false;
 
         $http.get("http://localhost:8080/api/tv/videos").success(function(data){
-            //console.log(data);
             myList.videos = data;
-            // console.log(myList.videos);
         });
 
         $http.get("http://localhost:8080/api/tv/news").success(function(data){
-            //console.log(data);
             myList.news = data;
-            //console.log(myList.news);
         });
 
         $http.get("http://localhost:8080/api/tv/biblio").success(function(data){
-            //console.log(data);
             myList.biblios = data;
-            //console.log(myList.news);
         });
+
+        $http.get("http://localhost:8080/api/tv/broadcasts").success(function(data){
+            myList.broadcasts = data;
+        });
+
+        $scope.removeBroadcast = function (broadcast) {
+            var index = myList.broadcasts.indexOf(broadcast);
+            console.log(index);
+            if (index > -1) {
+                myList.broadcasts.splice(index, 1);
+            }
+        }
+
+        $scope.addBroadcast = function () {
+            console.log("add");
+            var type = $scope.type;
+            var text = $scope.text;
+            if(!type){
+                alert("Tem que definir um tipo para o aviso.");
+            }
+            else{
+                myList.broadcasts.push({
+                    type: type,
+                    text: text
+                });
+            }
+        }
 
         var addCenas = function(){
             $("input:checkbox[name=video]:checked").each(function(){
@@ -37,8 +59,6 @@
                     description: JSON.parse(this.value).description,
                     thumbnail: JSON.parse(this.value).thumbnail
                 };
-                //console.log(JSON.parse(this.value).videoId);
-                //console.log(this.value);
                 myList.send.push(sendVideo);
             });
 
@@ -66,12 +86,20 @@
                 };
                 myList.send.push(sendBiblio);
             });
+
             $http.post('http://localhost:8080/api/dev/schedule', myList.send).success(function(){
                 myList.enviado = true;
                 myList.send = [];
             })
                 .error(function(){
                     alert("error");
+                });
+
+            $http.post('http://localhost:8080/api/dev/broadcast', myList.broadcasts).success(function(){
+                console.log(myList.broadcasts);
+            })
+                .error(function(){
+                    alert("error nos broadcasts");
                 });
         };
         myList.addC = addCenas;
