@@ -53,6 +53,7 @@
             $("input:checkbox[name=video]:checked").each(function(){
                 // add $(this).val() to your array
                 var sendVideo={
+                    id: JSON.parse(this.value)['_id'],
                     type: 'video',
                     videoId: JSON.parse(this.value).videoId,
                     name: JSON.parse(this.value).name,
@@ -64,7 +65,9 @@
 
             $("input:checkbox[name=new]:checked").each(function(){
                 // add $(this).val() to your array
+              console.log(JSON.parse(this.value)['_id']);
                 var sendNew={
+                    id: JSON.parse(this.value)['_id'],
                     type: 'new',
                     titulo: JSON.parse(this.value).titulo,
                     conteudo: JSON.parse(this.value).conteudo,
@@ -77,6 +80,7 @@
             $("input:checkbox[name=biblio]:checked").each(function(){
                 // add $(this).val() to your array
                 var sendBiblio={
+                    id: JSON.parse(this.value)['_id'],
                     type: 'biblio',
                     titulo: JSON.parse(this.value).titulo,
                     descricao: JSON.parse(this.value).desc,
