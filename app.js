@@ -10,19 +10,19 @@
         myList.send = [];
         myList.enviado = false;
 
-        $http.get("http://localhost:8080/api/tv/videos").success(function(data){
+        $http.get("http://server.pi.campinhos.pt/api/tv/videos").success(function(data){
             myList.videos = data;
         });
 
-        $http.get("http://localhost:8080/api/tv/news").success(function(data){
+        $http.get("http://server.pi.campinhos.pt/api/tv/news").success(function(data){
             myList.news = data;
         });
 
-        $http.get("http://localhost:8080/api/tv/biblio").success(function(data){
+        $http.get("http://server.pi.campinhos.pt/api/tv/biblio").success(function(data){
             myList.biblios = data;
         });
 
-        $http.get("http://localhost:8080/api/tv/broadcasts").success(function(data){
+        $http.get("http://server.pi.campinhos.pt/api/tv/broadcasts").success(function(data){
             myList.broadcasts = data;
         });
 
@@ -90,7 +90,7 @@
                 myList.send.push(sendBiblio);
             });
 
-            $http.post('http://localhost:8080/api/dev/schedule', myList.send).success(function(){
+            $http.post('http://server.pi.campinhos.pt/api/dev/schedule', myList.send).success(function(){
                 myList.enviado = true;
                 myList.send = [];
             })
@@ -98,7 +98,7 @@
                     alert("error");
                 });
 
-            $http.post('http://localhost:8080/api/dev/broadcast', myList.broadcasts).success(function(){
+            $http.post('http://server.pi.campinhos.pt/api/dev/broadcast', myList.broadcasts).success(function(){
                 console.log(myList.broadcasts);
             })
                 .error(function(){
